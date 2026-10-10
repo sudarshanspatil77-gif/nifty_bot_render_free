@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Render Deploy Guide</title>
+<style>
+body{background:#0f172a;color:white;font-family:Arial;padding:20px;line-height:1.6}
+.card{background:#1e293b;padding:20px;border-radius:12px;margin:15px 0}
+h2{color:#22c55e} h3{color:#3b82f6}
+.codeblock{background:#000;padding:15px;border-radius:10px;overflow:auto;margin:10px 0;font-family:monospace;font-size:13px}
+.green{color:#22c55e} .yellow{color:#facc15} .red{color:#ef4444}
+</style>
+</head>
+<body>
+<h1>🚀 RENDER VAR BOT DEPLOY - COMPLETE GUIDE</h1>
+
+<div class="card">
+<h2>Step 1: GitHub Repo Banav</h2>
+<div class="codeblock">
+# Tumchya PC var:
+mkdir nifty-bot-render
+cd nifty-bot-render
+
+# Files copy kar:
+# - bot_live_1lot.py (latest auto token wala)
+# - app.py
+# - pnl_chart.html
+# - requirements_render.txt
+# - Dockerfile
+# - render.yaml
+# - .gitignore
+
+git init
+git add .
+git commit -m "Nifty Bot - Trend Fib + Auto Token - Render"
+git branch -M main
+
+# GitHub var navin repo banav: nifty-bot-render
+# Mag push kar:
+git remote add origin https://github.com/YOUR_USERNAME/nifty-bot-render.git
+git push -u origin main
+</div>
+</div>
+
+<div class="card">
+<h2>Step 2: Render.com Var Deploy</h2>
+<ol>
+<li><b>render.com</b> var ja - GitHub ne login kar</li>
+<li><b>New + -> Web Service</b> click kar</li>
+<li>Tumcha <b>nifty-bot-render</b> repo select kar</li>
+<li>Settings:
+<div class="codeblock">
+Name: nifty-bot-trend-fib-auto-token
+Environment: Docker
+Plan: Free (or Starter $7/month for 24/7 no sleep)
+Dockerfile Path: ./Dockerfile
+</div>
+</li>
+<li><b>Environment Variables</b> add kar (Important!):
+<div class="codeblock">
+ANGEL_API_KEY = tumcha Angel API Key
+ANGEL_CLIENT_ID = 3344167
+ANGEL_PASSWORD = tumcha PIN
+ANGEL_TOTP_SECRET = tumcha TOTP Secret
+TELEGRAM_BOT_TOKEN = tumcha Telegram Bot Token
+TELEGRAM_CHAT_ID = tumcha Chat ID
+MAX_DAILY_LOSS = 1500
+MAX_TRADES = 5
+NIFTY_QTY = 65
+</div>
+<p class="yellow">⚠️ config.json upload karu naka - ENV vars vapra - Secure!</p>
+</li>
+<li><b>Create Web Service</b> click kar</li>
+<li>Build start hoil - 2-3 min lagtil</li>
+<li>Live jhalyavar URL yeil: <code>https://nifty-bot-trend-fib-auto-token.onrender.com</code></li>
+</ol>
+</div>
+
+<div class="card">
+<h2>Step 3: Bot Chalu Aahe Ka Check Kar</h2>
+<div class="codeblock">
+Tumcha Render URL open kar:
+https://nifty-bot-trend-fib-auto-token.onrender.com/
+
+Disel:
+✅ Bot Status: RUNNING
+Logic: TREND HIGH-LOW FIB...
+Token Auto: ON
+Last Login: ...
+
+Links:
+- /dashboard -> P&L Chart
+- /status -> JSON status
+- /logs -> Logs
+
+Telegram var pan signal yeil!
+</div>
+</div>
+
+<div class="card">
+<h2>Step 4: 24/7 Karnyasathi - UptimeRobot (Free Tier Sathi)</h2>
+<p class="red">Render Free Tier: 15 min koni request nahi ala tar bot sleep hoto!</p>
+<p class="green">Solution: UptimeRobot ne har 5 min la ping kar -> Bot kadhich sleep honar nahi!</p>
+<ol>
+<li><b>uptimerobot.com</b> var free account banav</li>
+<li>Add New Monitor:
+<div class="codeblock">
+Monitor Type: HTTP(s)
+Friendly Name: Nifty Bot
+URL: https://YOUR_APP.onrender.com/
+Monitoring Interval: 5 minutes
+</div>
+</li>
+<li>Create kar - Aata UptimeRobot har 5 min la tumcha bot la ping karel -> Bot 24/7 chalu!</li>
+</ol>
+<p><b>Starter Plan ($7/month) ghetla tar UptimeRobot chi garaj nahi - 24/7 no sleep!</b></p>
+</div>
+
+<div class="card">
+<h2>Step 5: Logs & P&L Kasa Baghaycha?</h2>
+<ul>
+<li><b>Web:</b> https://YOUR_APP.onrender.com/dashboard -> Chart</li>
+<li><b>Telegram:</b> Mobile var signal + P&L - Best!</li>
+<li><b>Render Dashboard:</b> Logs tab -> Live logs</li>
+<li><b>API:</b> /status -> JSON</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>💰 Kharch?</h2>
+<ul>
+<li><b>Free Plan:</b> $0/month - 750 hours/month - Sleep after 15 min (UptimeRobot ne solve)</li>
+<li><b>Starter Plan:</b> $7/month ~ Rs.580 - 24/7 no sleep - Recommended!</li>
+</ul>
+<p>VPS peksha cheap - Contabo Rs.460 vs Render Free!</p>
+</div>
+
+<div class="card">
+<h2>✅ Auto Token Regenerate - Render Sathi Perfect!</h2>
+<p>
+Render var bot restart jhala tari:<br>
+✅ TOTP auto generate (30 sec)<br>
+✅ JWT auto regenerate<br>
+✅ Expired error -> Auto login<br>
+✅ Market Closed -> Auto waiting<br>
+Perfect for 24/7 cloud!
+</p>
+</div>
+
+<div class="card">
+<h2>🔧 Common Issues</h2>
+<p><b>1. Build Fail:</b> requirements_render.txt check kar - Flask + gunicorn pahije</p>
+<p><b>2. Bot Not Running:</b> ENV vars check kar - ANGEL_API_KEY etc correct aahe ka</p>
+<p><b>3. Telegram Not Working:</b> TELEGRAM_BOT_TOKEN + CHAT_ID check kar</p>
+<p><b>4. Login Fail:</b> TOTP secret correct aahe ka - Google Authenticator varcha</p>
+</div>
+
+</body>
+</html>

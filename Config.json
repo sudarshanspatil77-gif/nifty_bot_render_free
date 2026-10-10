@@ -1,0 +1,13 @@
+{
+  "angel_api_key": "XBg8RQbK",
+  "angel_client_id": "S344167",
+  "angel_password": "1616",
+  "angel_totp_secret": "AGJRXRD2J3AALJXTCOGGE5Z3DQ",
+  "telegram_bot_token": "8676771749:AAG6q3BtAv7Uj_iKy8YFqTHt7DCiowOS8J8",
+  "telegram_chat_id": "2102022354",
+  "lot_size": 1,
+  "nifty_qty": 65,
+  "max_daily_loss": 1500,
+  "max_daily_profit": 5000,
+  "max_trades": 20
+}
