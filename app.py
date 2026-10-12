@@ -1,4 +1,15 @@
+import threading
+import bot_live_1lot
 
+# Auto-run bot in background
+def run_bot():
+    print("🚀 Auto-Running Bot...")
+    try:
+        bot_live_1lot.main() # kinva bot_live_1lot.start_bot()
+    except Exception as e:
+        print(f"Bot Error: {e}")
+
+threading.Thread(target=run_bot, daemon=True).start()
 import os, threading, time
 from datetime import datetime
 from flask import Flask, send_from_directory, jsonify
