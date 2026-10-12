@@ -1,7 +1,7 @@
-smartapi-python
-pyotp
+Flask
+gunicorn
 requests
 pandas
-numpy
-flask
-gunicorn
+pytz
+smartapi-python
+python-telegram-bot
