@@ -1,0 +1,7 @@
+Flask
+gunicorn
+requests
+pandas
+pytz
+smartapi-python
+python-telegram-bot
