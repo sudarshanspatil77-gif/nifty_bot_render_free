@@ -1,6 +1,0 @@
-Flask
-gunicorn
-requests
-pandas
-pytz
-smartapi-python
