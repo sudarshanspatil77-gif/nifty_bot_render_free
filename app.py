@@ -79,7 +79,7 @@ def send_tg_fixed(text):
                 if token and chat:
                     try:
                         msg=f"🔕 5 Trades Complete - OFF - Five Rules SL Trail 15pt\nTrades {STATE['trades_today']}/5 P&L Rs.{STATE['pnl']} Open {STATE['open_price']} {STATE['selected_type']}"
-                        requests.post(f"https://api.telegram.org/bot{token}/sendMessage",json={"chat_id":chat,"text":msg,"parse_mode":"Markdown"},timeout=10)
+                        requests.post(f"https://api.telegram.org/bot{token}/sendMessage",json={"chat_id":chat,"text":msg},timeout=10)
                         STATE["telegram_limit_sent"]=True
                         STATE["telegram_enabled"]=False
                     except: pass
@@ -89,7 +89,7 @@ def send_tg_fixed(text):
         chat=os.getenv('TELEGRAM_CHAT_ID')
         if not token or not chat: return False, "TELEGRAM_BOT_TOKEN/CHAT_ID not set in Render Environment"
         try:
-            r=requests.post(f"https://api.telegram.org/bot{token}/sendMessage",json={"chat_id":chat,"text":text,"parse_mode":"Markdown"},timeout=15)
+            r=requests.post(f"https://api.telegram.org/bot{token}/sendMessage",json={"chat_id":chat,"text":text},timeout=15)
             if r.status_code==200:
                 STATE["telegram_ok"]=True
                 log("Telegram Sent OK Five Rules SL Trail 15pt")
@@ -805,7 +805,7 @@ If you got this, Telegram ON - Five Rules + SL Trail 15pt Cost to Cost Once + Op
 
 Latest Request - SL Trailing Only One Time After Premium Go Up Side Mini 15 Point Trail SL Cost to Cost + Option Premium Choose After Market Opening Open Price 22500 Calculate Trend Call Side 22650 (150 Up) Or Put Side 22350 (150 Down) With 0.30 Delta - As Per Request - Only Premium - Implemented - Deploy Fixed 100% Working!
 """
-        r=requests.post(f"https://api.telegram.org/bot{token}/sendMessage",json={"chat_id":chat,"text":msg,"parse_mode":"Markdown"},timeout=15)
+        r=requests.post(f"https://api.telegram.org/bot{token}/sendMessage",json={"chat_id":chat,"text":msg},timeout=15)
         if r.status_code==200:
             log("Test Telegram Sent OK Latest Request")
             STATE["telegram_ok"]=True
